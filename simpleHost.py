@@ -16,7 +16,8 @@ class simpleHost(object):
         
 
     def process(self):
-       conn,addr = self.s.accept()
+        conn,addr = self.s.accept()
     
 
-    def    
+    def handlerNewClient(self):
+        pass    

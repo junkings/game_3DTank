@@ -51,6 +51,7 @@ while 1:
                 conn.sendall(data)
 
         except Exception as e:
-            print e
+            pass
+            #print e
             
 
