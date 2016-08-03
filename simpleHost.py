@@ -2,7 +2,7 @@
 #encoding:utf-8
 
 import socket
-
+import cPickle
 class simpleHost(object):
 
     def __init__(self):
@@ -28,6 +28,11 @@ class simpleHost(object):
             conn.setblocking(0)
             print("connect by",addr)
             self.list_client.append(conn)
+
+            user_data = {
+                
+            }
+            conn.sendall(len(self.list_client)-1)
         except Exception as e:
             pass
 
@@ -43,8 +48,12 @@ class simpleHost(object):
                 if len(data) == 0:
                     conn.close()
                 # print len(data)
-                print data
+                # print data
 
+                test =  cPickle.loads(data)
+                print test
+                print test['data']
+                print test['uid']
 
                 if data == 'close':
                     conn.sendall('done')
@@ -54,12 +63,26 @@ class simpleHost(object):
                     print self.del_list
                     flag = True
                 else:
-                    conn.sendall(data)
+                    conn.sendall(test['data'])
             except Exception as e:
                 pass
 
         if flag==True:
             self.DelClient()
+
+    def sendData(self,str,pos):
+        if pos < 0:
+            pass
+
+        if pos >= len(self.list_client):
+            return
+
+        conn = self.list_client[pos]
+        try:
+            conn.sendall(str)
+        except Exception as e:
+            print e
+
 
     def DelClient(self):
         print self.del_list
