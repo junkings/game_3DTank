@@ -12,7 +12,7 @@ simpleServer = simpleHost.simpleHost()
 
 # list_client =[]
 while 1:
-    time.sleep(0.1)
+    time.sleep(0.01)
     simpleServer.process()
 
 

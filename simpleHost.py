@@ -30,7 +30,7 @@ class simpleHost(object):
             self.list_client.append(conn)
 
             user_data = {
-                
+
             }
             conn.sendall(len(self.list_client)-1)
         except Exception as e:
@@ -48,27 +48,28 @@ class simpleHost(object):
                 if len(data) == 0:
                     conn.close()
                 # print len(data)
-                # print data
+                print data
 
-                test =  cPickle.loads(data)
-                print test
-                print test['data']
-                print test['uid']
-
-                if data == 'close':
-                    conn.sendall('done')
-                    conn.close()  # 关闭连接
-                    print i
-                    self.del_list.append(i)
-                    print self.del_list
-                    flag = True
-                else:
-                    conn.sendall(test['data'])
+                conn.sendall(data)
+                # test =  cPickle.loads(data)
+                # print test
+                # print test['data']
+                # print test['uid']
+                #
+                # if data == 'close':
+                #     conn.sendall('done')
+                #     conn.close()  # 关闭连接
+                #     print i
+                #     self.del_list.append(i)
+                #     print self.del_list
+                #     flag = True
+                # else:
+                #     conn.sendall(test['data'])
             except Exception as e:
                 pass
 
-        if flag==True:
-            self.DelClient()
+        # if flag==True:
+        #     self.DelClient()
 
     def sendData(self,str,pos):
         if pos < 0:
@@ -90,5 +91,7 @@ class simpleHost(object):
             del self.list_client[self.del_list[i]]
 
         self.del_list = []
+
+
 
 

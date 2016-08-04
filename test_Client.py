@@ -20,7 +20,8 @@ while 1:
     cmd=raw_input("Please input cmd:")       #与人交互，输入命令
 
     client.sendData(cmd, 0)
-    client.ReceiveData()
+    #client.ReceiveData()
+    print 11
 
 client.close()   #关闭连接
 '''
